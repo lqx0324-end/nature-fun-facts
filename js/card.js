@@ -19,11 +19,21 @@ const Card = {
       <div class="flip-card-inner">
         <div class="flip-card-front" style="border-top: 4px solid ${catColor}">
           <span class="card-category" style="background: ${catColor}">${fact.category}</span>
+          <div class="card-image-container" data-fact-id="${fact.id}">
+            <div class="card-image-placeholder">
+              <svg viewBox="0 0 24 24" width="32" height="32"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="currentColor" opacity="0.3"/></svg>
+            </div>
+          </div>
           <p class="card-question">${fact.question}</p>
           <p class="card-hint">点击翻转查看答案</p>
         </div>
         <div class="flip-card-back" style="border-top: 4px solid ${catColor}">
           <span class="card-category" style="background: ${catColor}">${fact.category}</span>
+          <div class="card-image-container" data-fact-id="${fact.id}">
+            <div class="card-image-placeholder">
+              <svg viewBox="0 0 24 24" width="32" height="32"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="currentColor" opacity="0.3"/></svg>
+            </div>
+          </div>
           <h3 class="card-answer">${fact.answer}</h3>
           <p class="card-explanation">${fact.explanation}</p>
           ${showActions ? `
@@ -40,6 +50,9 @@ const Card = {
         </div>
       </div>
     `;
+
+    // 异步加载图片
+    this._loadImage(card, fact);
 
     card.addEventListener('click', (e) => {
       if (e.target.closest('[data-action]')) return;
@@ -77,11 +90,21 @@ const Card = {
       <div class="flip-card-inner">
         <div class="flip-card-front" style="border-top: 4px solid ${catColor}">
           <span class="card-category" style="background: ${catColor}">${fact.category}</span>
+          <div class="card-image-container" data-fact-id="${fact.id}">
+            <div class="card-image-placeholder">
+              <svg viewBox="0 0 24 24" width="32" height="32"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="currentColor" opacity="0.3"/></svg>
+            </div>
+          </div>
           <p class="card-question">${fact.question}</p>
           <p class="card-hint">点击翻转查看答案</p>
         </div>
         <div class="flip-card-back" style="border-top: 4px solid ${catColor}">
           <span class="card-category" style="background: ${catColor}">${fact.category}</span>
+          <div class="card-image-container" data-fact-id="${fact.id}">
+            <div class="card-image-placeholder">
+              <svg viewBox="0 0 24 24" width="32" height="32"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="currentColor" opacity="0.3"/></svg>
+            </div>
+          </div>
           <h3 class="card-answer">${fact.answer}</h3>
           <p class="card-explanation">${fact.explanation}</p>
           <div class="card-actions">
@@ -93,6 +116,9 @@ const Card = {
         </div>
       </div>
     `;
+
+    // 异步加载图片
+    this._loadImage(card, fact);
 
     card.addEventListener('click', (e) => {
       if (e.target.closest('[data-action]')) return;
@@ -118,5 +144,16 @@ const Card = {
     }
 
     return card;
+  },
+
+  // 异步加载 Wikimedia 图片并插入卡片
+  async _loadImage(card, fact) {
+    const imageUrl = await AI.fetchImage(fact);
+    if (!imageUrl) return;
+
+    const containers = card.querySelectorAll('.card-image-container');
+    containers.forEach(container => {
+      container.innerHTML = `<img class="card-image" src="${imageUrl}" alt="${fact.answer}" loading="lazy" onerror="this.parentElement.style.display='none'">`;
+    });
   },
 };
