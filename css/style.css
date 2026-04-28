@@ -402,3 +402,106 @@ body {
   color: var(--color-white);
   border-color: var(--color-green);
 }
+
+/* === 页面切换动画 === */
+.page {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === 卡片入场动画 === */
+.flip-card {
+  animation: cardIn 0.4s ease;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* === 收藏按钮动画 === */
+.btn-fav--active {
+  animation: heartBeat 0.3s ease;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* === 桌面端适配 === */
+@media (min-width: 481px) {
+  body {
+    background: var(--color-cream-dark);
+  }
+
+  #app {
+    background: var(--color-cream);
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.06);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    min-height: 320px;
+  }
+
+  .flip-card--compact .flip-card-front,
+  .flip-card--compact .flip-card-back {
+    min-height: 220px;
+  }
+}
+
+/* === 大屏双列 === */
+@media (min-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* === 滚动条美化 === */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-cream-dark);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brown-light);
+}
+
+/* === 加载状态 === */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-text-light);
+}
+
+.loading::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-cream-dark);
+  border-top-color: var(--color-green);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
