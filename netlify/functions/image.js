@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 const crypto = require('crypto');
 
 const memoryCache = new Map();
@@ -31,12 +30,13 @@ exports.handler = async (event) => {
     try {
       const resp = await fetch(url, {
         headers: { 'User-Agent': 'Mozilla/5.0' },
-        timeout: 90000,
+        signal: AbortSignal.timeout(90000),
       });
 
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
 
-      const buffer = await resp.buffer();
+      const arrayBuffer = await resp.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
 
       if (buffer.length < 1000) throw new Error(`Too small: ${buffer.length} bytes`);
 
