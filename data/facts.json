@@ -1,0 +1,402 @@
+[
+  {
+    "id": "fact_001",
+    "question": "这种鸟捕鱼时会变成一把伞？",
+    "answer": "黑鹭",
+    "explanation": "黑鹭在浅水中会将翅膀展开成伞状，在水面制造阴影。鱼儿会被阴影吸引过来躲避阳光，黑鹭便趁机捕食。这种独特的捕食方式被称为"伞式捕鱼"。",
+    "category": "动物",
+    "image_prompt": "A black heron spreading its wings like an umbrella over shallow water, creating a shadow to attract fish"
+  },
+  {
+    "id": "fact_002",
+    "question": "哪种庞然大物和棕榈树是互相依赖的好朋友？",
+    "answer": "大象与棕榈树",
+    "explanation": "大象吃棕榈树的果实，通过粪便将种子传播到远方。种子在大象的粪便中获得养分，更容易发芽生长。没有大象，很多棕榈树种群将难以延续。",
+    "category": "共生关系",
+    "image_prompt": "An elephant eating palm tree fruit with small palm seedlings growing from elephant dung nearby"
+  },
+  {
+    "id": "fact_003",
+    "question": "哪种花闻起来像腐肉，却能让甲虫疯狂？",
+    "answer": "泰坦魔芋",
+    "explanation": "泰坦魔芋是世界上最大的花之一，开花时散发腐肉般的恶臭。这种气味专门吸引食腐甲虫和苍蝇来帮它传粉，是植物界最极端的"气味欺骗"策略。",
+    "category": "植物",
+    "image_prompt": "A giant titan arum flower blooming with a tall spadix, surrounded by beetles and flies attracted by its scent"
+  },
+  {
+    "id": "fact_004",
+    "question": "哪种微生物能在太空辐射中存活？",
+    "answer": "水熊虫",
+    "explanation": "水熊虫是地球上最顽强的生物之一，能承受-272°C到150°C的温度、真空环境、甚至太空辐射。它们通过进入"隐生状态"暂停新陈代谢来生存。",
+    "category": "极端生存",
+    "image_prompt": "A microscopic tardigrade in its cryptobiotic tun state, floating in space with stars in the background"
+  },
+  {
+    "id": "fact_005",
+    "question": "哪种树会"走路"，每年移动几十厘米？",
+    "answer": "索科特拉龙血树",
+    "explanation": "在索科特拉岛上，某些龙血树的不定根会朝一个方向生长，而另一侧的根逐渐枯死，使整棵树缓慢"行走"，寻找更好的水源和光照。",
+    "category": "植物",
+    "image_prompt": "A dragon blood tree on Socotra island with adventitious roots growing on one side while old roots wither on the other"
+  },
+  {
+    "id": "fact_006",
+    "question": "哪种鱼会用工具砸开贝壳？",
+    "answer": "黑斑猪齿鱼",
+    "explanation": "黑斑猪齿鱼是已知少数会使用工具的鱼类之一。它叼起贝壳，游到岩石上用力砸开，反复多次直到贝壳碎裂，然后享用里面的美食。",
+    "category": "动物",
+    "image_prompt": "A blackspotted wrasse fish smashing a shell against a rock underwater to crack it open"
+  },
+  {
+    "id": "fact_007",
+    "question": "哪种蚂蚁会种蘑菇当粮食？",
+    "answer": "切叶蚁",
+    "explanation": "切叶蚁切下树叶不是为了吃，而是带回巢穴用来培养真菌。它们维护着精密的"地下农场"，甚至会用抗生素抑制有害霉菌，是自然界最早的"农夫"。",
+    "category": "动物",
+    "image_prompt": "Leafcutter ants carrying leaf fragments into their underground fungus garden"
+  },
+  {
+    "id": "fact_008",
+    "question": "哪种植物能在沙漠中活上千年，靠的是雾气？",
+    "answer": "千岁兰",
+    "explanation": "千岁兰是纳米布沙漠的远古植物，一生只长两片叶子，却能活2000年以上。它的叶子吸收海雾中的水分，是真正的"靠雾喝水"的植物。",
+    "category": "极端生存",
+    "image_prompt": "A welwitschia plant in the Namib desert with only two long curled leaves, absorbing moisture from coastal fog"
+  },
+  {
+    "id": "fact_009",
+    "question": "哪种鸟会故意放火烧草丛来赶出猎物？",
+    "answer": "黑鸢",
+    "explanation": "澳大利亚的黑鸢被观察到叼起燃烧的树枝，故意扔到未着火的草丛中引发新的火势，将躲藏的昆虫和小动物赶出来捕食。这是非人类中极罕见的"纵火"行为。",
+    "category": "动物",
+    "image_prompt": "A black kite bird carrying a burning branch over dry grassland, dropping it to start a new fire"
+  },
+  {
+    "id": "fact_010",
+    "question": "哪种虾的拳头能打出太阳表面的温度？",
+    "answer": "雀尾螳螂虾",
+    "explanation": "雀尾螳螂虾的前肢弹射速度达23米/秒，击打瞬间产生空化气泡，气泡破裂时温度高达几千度，甚至发出微弱闪光。这是动物界最快的出拳。",
+    "category": "动物",
+    "image_prompt": "A peacock mantis shrimp striking with its powerful club appendage, creating a cavitation bubble with a flash of light"
+  },
+  {
+    "id": "fact_011",
+    "question": "哪种植物的花开在地下？",
+    "answer": "地下兰",
+    "explanation": "地下兰完全生活在地下，连花都不钻出地表。它没有叶绿素，不进行光合作用，而是靠真菌从周围植物那里"偷"养分，是植物界最彻底的"宅"。",
+    "category": "植物",
+    "image_prompt": "An underground orchid blooming beneath the soil surface with fungal hyphae connecting it to nearby plant roots"
+  },
+  {
+    "id": "fact_012",
+    "question": "哪种动物的心脏可以停跳4小时不死？",
+    "answer": "林蛙",
+    "explanation": "北美林蛙冬天会完全冻成"冰棍"，心脏停跳、血液凝固。春天解冻后，它又活蹦乱跳。它靠体内大量葡萄糖作为"防冻液"保护细胞。",
+    "category": "极端生存",
+    "image_prompt": "A wood frog frozen solid in winter ice with ice crystals on its skin, surrounded by snow"
+  },
+  {
+    "id": "fact_013",
+    "question": "哪种鸟和鳄鱼是"牙医"关系？",
+    "answer": "埃及鸻与鳄鱼",
+    "explanation": "埃及鸻会飞到鳄鱼张开的嘴里啄食牙缝中的残渣和寄生虫。鳄鱼不但不吃它，还会乖乖张嘴等待。这是自然界最惊险的共生关系之一。",
+    "category": "共生关系",
+    "image_prompt": "An Egyptian plover bird standing inside the open mouth of a crocodile, cleaning its teeth"
+  },
+  {
+    "id": "fact_014",
+    "question": "哪种树会"爆炸"来传播种子？",
+    "answer": "喷瓜",
+    "explanation": "喷瓜成熟时内部压力极高，稍有触碰就会"砰"地炸开，将种子和黏液喷射到十几米远。它是植物界最暴力的播种方式，被称为"植物炸弹"。",
+    "category": "植物",
+    "image_prompt": "A squirting cucumber fruit exploding and shooting seeds and liquid in all directions"
+  },
+  {
+    "id": "fact_015",
+    "question": "哪种章鱼会模仿其他动物来骗人？",
+    "answer": "拟态章鱼",
+    "explanation": "拟态章鱼能模仿至少15种海洋动物的外形和动作——变成海蛇、狮子鱼、比目鱼等。它根据威胁类型选择模仿对象，是海洋中最厉害的"变形者"。",
+    "category": "动物",
+    "image_prompt": "A mimic octopus transforming its body shape to imitate a sea snake, lionfish, and flatfish"
+  },
+  {
+    "id": "fact_016",
+    "question": "哪种植物靠蚂蚁当保镖？",
+    "answer": "金合欢树与蚂蚁",
+    "explanation": "金合欢树提供中空的刺和花蜜给蚂蚁居住和取食，蚂蚁则攻击任何啃食树叶的动物。实验证明，赶走蚂蚁的金合欢树会被食草动物啃光。",
+    "category": "共生关系",
+    "image_prompt": "An acacia tree with ants living inside its hollow thorns, defending against a herbivore approaching the leaves"
+  },
+  {
+    "id": "fact_017",
+    "question": "哪种鱼能在陆地上走路还能爬树？",
+    "answer": "弹涂鱼",
+    "explanation": "弹涂鱼用胸鳍在泥滩上"走路"，甚至能爬上红树林的根和低矮树枝。它的眼睛突出头顶，可以在空气中观察，是鱼类向陆地进化的活标本。",
+    "category": "动物",
+    "image_prompt": "A mudskipper fish using its pectoral fins to walk on mud and climb mangrove roots above water"
+  },
+  {
+    "id": "fact_018",
+    "question": "哪种细菌能在核反应堆里安家？",
+    "answer": "耐辐射奇球菌",
+    "explanation": "耐辐射奇球菌能承受比人类致死量高3000倍的辐射。它有超强的DNA修复能力，被辐射打碎的基因组能在几小时内重新拼好，是生物界的"不死小强"。",
+    "category": "极端生存",
+    "image_prompt": "Deinococcus radiodurans bacteria surviving inside a nuclear reactor with radiation symbols around it"
+  },
+  {
+    "id": "fact_019",
+    "question": "哪种花会模拟雌蜂来骗雄蜂交配？",
+    "answer": "眉兰",
+    "explanation": "眉兰的花朵在形状、颜色和气味上都模仿某种雌性胡蜂，雄蜂被吸引来"交配"，实际上是在帮花传粉。不同种类的眉兰模拟不同的蜂，精准到令人发指。",
+    "category": "植物",
+    "image_prompt": "An Ophrys orchid flower that mimics a female bee, with a male bee attempting to mate with it"
+  },
+  {
+    "id": "fact_020",
+    "question": "哪种虾会被困在石头里一辈子？",
+    "answer": "砗磲虾",
+    "explanation": "砗磲虾幼年时钻入砗磲（巨型蛤蜊）的壳内，随着壳的生长，入口越来越小，最终被永远困在里面。但它获得了安全的家和稳定的食物来源。",
+    "category": "共生关系",
+    "image_prompt": "A tiny shrimp trapped inside a giant clam shell with only a small opening visible"
+  },
+  {
+    "id": "fact_021",
+    "question": "哪种鸟会给自己"化妆"？",
+    "answer": "火烈鸟",
+    "explanation": "火烈鸟用尾脂腺分泌的红色色素涂抹羽毛，让自己看起来更鲜艳。颜色越红的火烈鸟越健康，也越受异性青睐——这是动物界少见的"化妆"行为。",
+    "category": "动物",
+    "image_prompt": "A flamingo applying red pigment from its uropygial gland to its feathers, vibrant pink coloration"
+  },
+  {
+    "id": "fact_022",
+    "question": "哪种植物能"听"到水声就往那边长？",
+    "answer": "豌豆苗",
+    "explanation": "实验发现豌豆苗的根会朝水流声的方向生长，即使水被密封在管子里无法接触。这表明植物可能具有某种"听觉"，能感知地下水的位置。",
+    "category": "植物",
+    "image_prompt": "Pea seedling roots growing toward the sound of water flowing inside a sealed pipe underground"
+  },
+  {
+    "id": "fact_023",
+    "question": "哪种虫子能扛住比自己重1000倍的压力？",
+    "answer": "铁锭甲虫",
+    "explanation": "铁锭甲虫的外壳极其坚硬，连钉子都钉不进去。它能承受被汽车碾过的压力——约为自身体重的1000倍。这种甲虫的装甲结构正被用来设计新型材料。",
+    "category": "极端生存",
+    "image_prompt": "An ironclad beetle being run over by a car wheel without being crushed, showing its incredibly tough exoskeleton"
+  },
+  {
+    "id": "fact_024",
+    "question": "哪种鸟和河马是"搓澡"搭档？",
+    "answer": "牛椋鸟与河马",
+    "explanation": "牛椋鸟站在河马背上啄食寄生虫和死皮，帮河马"搓澡"。河马享受清洁服务，鸟获得食物。但牛椋鸟有时也会啄开伤口保持开放以便持续取食。",
+    "category": "共生关系",
+    "image_prompt": "Oxpecker birds perched on a hippopotamus back, pecking at parasites while the hippo rests in water"
+  },
+  {
+    "id": "fact_025",
+    "question": "哪种蜥蜴会从眼睛喷血？",
+    "answer": "角蜥",
+    "explanation": "角蜥受到威胁时，会从眼角的血管喷射出腥臭的血液，最远可达1.5米。这种血液含有令犬科动物不适的化学物质，是极其罕见的防御机制。",
+    "category": "动物",
+    "image_prompt": "A horned lizard shooting blood from its eye corner as a defense mechanism against a predator"
+  },
+  {
+    "id": "fact_026",
+    "question": "哪种树会"流血"？",
+    "answer": "龙血树",
+    "explanation": "龙血树受伤时会流出深红色的树脂，看起来像在流血。古人认为这是龙的血液，因此得名。这种红色树脂被用作染料和传统药材已有数千年历史。",
+    "category": "植物",
+    "image_prompt": "A dragon blood tree with dark red resin oozing from a wound in its trunk, resembling blood"
+  },
+  {
+    "id": "fact_027",
+    "question": "哪种动物能在太空真空中产卵？",
+    "answer": "水熊虫",
+    "explanation": "2007年欧洲航天局实验证实，水熊虫暴露在太空真空和辐射中10天后，回到地球仍能恢复活动并正常繁殖。这是已知唯一能在太空环境中存活的动物。",
+    "category": "极端生存",
+    "image_prompt": "Tardigrades surviving in outer space vacuum near a satellite, with Earth visible in the background"
+  },
+  {
+    "id": "fact_028",
+    "question": "哪种鱼和河豚是"室友"关系？",
+    "answer": "小丑鱼与海葵",
+    "explanation": "小丑鱼体表有特殊黏液，不会被海葵的毒刺蜇伤。它住在海葵触手间获得保护，同时用鲜艳的颜色吸引猎物靠近海葵，还帮海葵清理残渣。",
+    "category": "共生关系",
+    "image_prompt": "A clownfish swimming safely among the tentacles of a sea anemone on a coral reef"
+  },
+  {
+    "id": "fact_029",
+    "question": "哪种植物会"算数"来控制发芽时机？",
+    "answer": "拟南芥",
+    "explanation": "研究发现拟南芥的种子能根据温度变化的次数来"判断"冬天是否过去。它需要经历足够多的冷热交替才会发芽，避免在短暂的回暖期中"被骗"出土。",
+    "category": "植物",
+    "image_prompt": "Arabidopsis seeds underground counting temperature cycles to decide when to germinate, with snow melting above"
+  },
+  {
+    "id": "fact_030",
+    "question": "哪种鲸鱼会"唱歌"而且每首歌都在流行？",
+    "answer": "座头鲸",
+    "explanation": "座头鲸的歌声复杂而悠长，可持续数小时。更神奇的是，同一海域的鲸鱼会唱同一首"流行歌"，而且这首歌每年都在变化，像是有自己的"音乐排行榜"。",
+    "category": "动物",
+    "image_prompt": "A humpback whale singing underwater with sound waves radiating outward, other whales in the distance listening"
+  },
+  {
+    "id": "fact_031",
+    "question": "哪种蚂蚁会"务农"还会"制药"？",
+    "answer": "切叶蚁",
+    "explanation": "切叶蚁不仅种植真菌作为食物，还会在真菌花园上培养一种放线菌来产生抗生素，抑制有害的寄生霉菌。这是自然界最早的"制药工业"。",
+    "category": "共生关系",
+    "image_prompt": "Leafcutter ants tending their fungus garden with actinobacteria producing antibiotics on the fungal substrate"
+  },
+  {
+    "id": "fact_032",
+    "question": "哪种植物靠爆炸把种子射到30米外？",
+    "answer": "沙盒树",
+    "explanation": "沙盒树的果实成熟后以每秒70米的速度爆炸，将种子抛射到30米以外。爆炸威力大到能伤到附近的人，被称为"炸药树"。",
+    "category": "植物",
+    "image_prompt": "A sandbox tree fruit exploding with seeds shooting outward at high speed, with a dynamite-like burst effect"
+  },
+  {
+    "id": "fact_033",
+    "question": "哪种虫子能把自己冻成玻璃再复活？",
+    "answer": "北极毛虫",
+    "explanation": "北极毛虫每年冬天会完全冻结，体内形成玻璃态的防冻物质。春天解冻后继续进食，如此反复7-14年才能化蛹成蛾，是寿命最短的蛾的最长幼虫期。",
+    "category": "极端生存",
+    "image_prompt": "An Arctic woolly bear caterpillar frozen solid in ice with glassy antifreeze substance inside, in a frozen tundra"
+  },
+  {
+    "id": "fact_034",
+    "question": "哪种鸟会给鳄鱼"剔牙"？",
+    "answer": "埃及鸻",
+    "explanation": "古希罗多德记载埃及鸻会飞入鳄鱼口中啄食水蛭和腐肉。虽然现代科学家对此有争议，但这一传说流传千年，成为最著名的共生关系故事。",
+    "category": "共生关系",
+    "image_prompt": "An Egyptian plover bird inside a crocodile's open mouth picking leeches and debris from between its teeth"
+  },
+  {
+    "id": "fact_035",
+    "question": "哪种鱼会"飞"还能滑翔400米？",
+    "answer": "飞鱼",
+    "explanation": "飞鱼用尾部高速拍水起飞，展开宽大的胸鳍在空中滑翔，最远可达400米。它们"飞行"是为了逃避金枪鱼等掠食者的追捕，但有时会被海鸟从空中截杀。",
+    "category": "动物",
+    "image_prompt": "A flying fish launching out of the ocean surface with spread pectoral fins, gliding above the waves"
+  },
+  {
+    "id": "fact_036",
+    "question": "哪种植物会"吃"金属？",
+    "answer": "镍超富集植物",
+    "explanation": "在富含镍矿的土壤中，某些植物能吸收并储存大量镍元素，汁液中镍含量可达植物干重的1%以上。科学家正在研究用它们来"绿色采矿"——种出镍来。",
+    "category": "植物",
+    "image_prompt": "A nickel hyperaccumulator plant growing on mineral-rich soil with metallic nickel particles visible in its sap"
+  },
+  {
+    "id": "fact_037",
+    "question": "哪种动物能在沸水旁安家？",
+    "answer": "庞贝蠕虫",
+    "explanation": "庞贝蠕虫生活在深海热泉旁，头部水温22°C，尾部水温达80°C，是已知最耐热的动物。它体表的细菌层可能起到了隔热保护的作用。",
+    "category": "极端生存",
+    "image_prompt": "A Pompeii worm living on a deep-sea hydrothermal vent with hot mineral-rich water flowing around it"
+  },
+  {
+    "id": "fact_038",
+    "question": "哪种虾和虾虎鱼共用一个洞？",
+    "answer": "枪虾与虾虎鱼",
+    "explanation": "枪虾视力差但擅长挖洞，虾虎鱼视力好但不会挖。枪虾用触角搭在虾虎鱼身上，鱼发现危险就甩尾通知虾，两者一起缩回洞中，是经典的"瞎子带路"组合。",
+    "category": "共生关系",
+    "image_prompt": "A pistol shrimp and goby fish sharing a burrow, the shrimp's antenna touching the fish at the burrow entrance"
+  },
+  {
+    "id": "fact_039",
+    "question": "哪种鸟会"织"出公寓式巢穴？",
+    "answer": "织布鸟",
+    "explanation": "群织鸟用草枝编织出巨大的公共巢穴，可容纳上百个家庭。巢穴有独立的房间和共享的入口通道，内部温度调节精妙，是鸟类界的"建筑师"。",
+    "category": "动物",
+    "image_prompt": "A massive communal weaver bird nest hanging from a tree, with multiple entrance tunnels and individual chambers"
+  },
+  {
+    "id": "fact_040",
+    "question": "哪种植物会"数数"决定何时开花？",
+    "answer": "植物的光周期感应",
+    "explanation": "很多植物通过测量连续黑暗的时长来"数"日子，精确判断季节。只有当日照达到特定长度时才开花，这比看温度更可靠，是植物版的"日历"。",
+    "category": "植物",
+    "image_prompt": "Plants measuring day length to determine flowering time, with a sun and moon cycle diagram above a field"
+  },
+  {
+    "id": "fact_041",
+    "question": "哪种蜥蜴能在水面上奔跑？",
+    "answer": "双冠蜥",
+    "explanation": "双冠蜥用后腿高速奔跑，脚掌拍击水面产生气泡支撑身体，每秒可跑8步。它能在水面上跑出约5米才沉入水中，是现实版的"轻功水上漂"。",
+    "category": "动物",
+    "image_prompt": "A basilisk lizard running across water surface on its hind legs, creating splashing bubbles with each step"
+  },
+  {
+    "id": "fact_042",
+    "question": "哪种细菌靠吃石头为生？",
+    "answer": "化能自养细菌",
+    "explanation": "深海底没有阳光，化能自养细菌靠氧化硫化氢等无机物获取能量，完全不需要阳光和有机物。它们支撑着整个深海热泉生态系统，是地球上最"独立"的生命。",
+    "category": "极端生存",
+    "image_prompt": "Chemoautotrophic bacteria thriving around a deep-sea hydrothermal vent, oxidizing minerals in the dark ocean"
+  },
+  {
+    "id": "fact_043",
+    "question": "哪种蝴蝶迁徙要飞越三代才能完成？",
+    "answer": "帝王蝶",
+    "explanation": "帝王蝶每年从加拿大飞到墨西哥，全程4000多公里。没有任何一只蝴蝶能飞完全程——需要3-4代接力完成。但最后一代却能精确回到祖先的同一棵树上。",
+    "category": "动物",
+    "image_prompt": "Monarch butterflies migrating across a vast landscape, with multiple generations接力completing the journey"
+  },
+  {
+    "id": "fact_044",
+    "question": "哪种花只在夜间开放，只为一种蛾服务？",
+    "answer": "月见草与天蛾",
+    "explanation": "月见草只在夜间开花，释放特殊香气吸引天蛾。天蛾的长喙刚好能伸入花管底部取蜜，同时帮花传粉。这种精准的"夜间约会"是协同进化的经典案例。",
+    "category": "共生关系",
+    "image_prompt": "Evening primrose flowers blooming at night with a hawk moth hovering to drink nectar using its long proboscis"
+  },
+  {
+    "id": "fact_045",
+    "question": "哪种鱼能在干涸的泥里休眠数年？",
+    "answer": "肺鱼",
+    "explanation": "非洲肺鱼在旱季来临时钻入泥中，分泌黏液形成茧，靠鳔呼吸空气，新陈代谢降到极低。它们能在这种状态下存活数年，等雨季到来再"复活"。",
+    "category": "极端生存",
+    "image_prompt": "An African lungfish encased in a cocoon of dried mud, hibernating underground during drought"
+  },
+  {
+    "id": "fact_046",
+    "question": "哪种鸟会"钓鱼"给同伴看？",
+    "answer": "绿鹭",
+    "explanation": "绿鹭会把面包屑、昆虫或小树枝丢到水面上当"鱼饵"，等鱼来吃时再捕食。更厉害的是，这种行为是后天学来的，不同地区的绿鹭用的"饵"还不一样。",
+    "category": "动物",
+    "image_prompt": "A green heron dropping a small insect onto the water surface as bait, waiting for a fish to approach"
+  },
+  {
+    "id": "fact_047",
+    "question": "哪种植物会"走路"寻找水源？",
+    "answer": "行走棕榈",
+    "explanation": "南美热带雨林中的行走棕榈会不断长出新的不定根，同时让旧根枯死，使整棵树缓慢向光照和水分更好的方向移动，每年可"走"几厘米到几十厘米。",
+    "category": "植物",
+    "image_prompt": "A walking palm tree in the rainforest with new stilt roots growing forward and old roots withering behind"
+  },
+  {
+    "id": "fact_048",
+    "question": "哪种海蛞蝓会"偷"别人的武器？",
+    "answer": "大西洋海神海蛞蝓",
+    "explanation": "这种海蛞蝓吃掉僧帽水母后，不会消化水母的刺细胞，而是将它们储存在自己的突起中当武器。它"偷"来的武器一样致命，是海洋中的"军火商"。",
+    "category": "动物",
+    "image_prompt": "A blue dragon sea slug with stolen nematocysts stored in its cerata, floating near a Portuguese man o' war"
+  },
+  {
+    "id": "fact_049",
+    "question": "哪种植物和蚂蚁是"租房"关系？",
+    "answer": "蚁栖树与蚂蚁",
+    "explanation": "蚁栖树的茎是中空的，提供现成的"公寓"给蚂蚁居住，还提供富含蛋白质的食物体。蚂蚁则攻击一切来犯的食草昆虫，是植物界最成功的"房东"。",
+    "category": "共生关系",
+    "image_prompt": "An ant-plant with hollow stem chambers housing ants, and ants defending the plant from herbivorous insects"
+  },
+  {
+    "id": "fact_050",
+    "question": "哪种蛙的皮肤能"隐身"？",
+    "answer": "玻璃蛙",
+    "explanation": "玻璃蛙的腹部皮肤完全透明，能直接看到内脏和骨骼。这种透明让它在叶片上时几乎隐形，从下方看就像一片普通的叶子，是伪装术的极致。",
+    "category": "动物",
+    "image_prompt": "A glass frog on a leaf with transparent belly showing its internal organs, viewed from below against green foliage"
+  }
+]
