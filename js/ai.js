@@ -112,7 +112,7 @@ const AI = {
     const searchTerm = fact.search_term || fact.answer;
     const url = `https://commons.wikimedia.org/w/api.php?` +
       `action=query&generator=search&gsrsearch=${encodeURIComponent(searchTerm)}` +
-      `&gsrnamespace=6&gsrlimit=5&prop=imageinfo&iiprop=url&iiurlwidth=600&format=json&origin=*`;
+      `&gsrnamespace=6&gsrlimit=10&prop=imageinfo&iiprop=url&iiurlwidth=600&format=json&origin=*`;
 
     try {
       const resp = await fetch(url);
@@ -121,29 +121,31 @@ const AI = {
       const pages = data.query?.pages;
       if (!pages) return null;
 
-      // 找第一张合适的图片（排除 SVG/ICO 等非照片格式）
-      for (const page of Object.values(pages)) {
-        const info = page.imageinfo?.[0];
-        if (!info) continue;
-        const thumbUrl = info.thumburl;
+      const pageList = Object.values(pages);
+
+      // 优先选 JPEG/PNG 照片，排除图标、旗帜、地图等非照片
+      const skipPatterns = /\bicon\b|\bflag\b|\bmap\b|\blogo\b|\bcoat\s+of\s+arms\b|\bseal\b|\bsign\b/i;
+      const photo = pageList.find(p => {
+        const info = p.imageinfo?.[0];
+        if (!info?.thumburl) return false;
         const origUrl = info.url || '';
-        // 优先选 JPEG/PNG 照片，排除图标和地图
-        if (thumbUrl && /\.(jpg|jpeg|png)/i.test(origUrl) &&
-            !/icon|flag|map|logo|coat.of.arms/i.test(page.title)) {
-          this._imageCache[fact.id] = thumbUrl;
-          return thumbUrl;
-        }
+        return /\.(jpg|jpeg|png)/i.test(origUrl) && !skipPatterns.test(p.title || '');
+      });
+      if (photo) {
+        const thumbUrl = photo.imageinfo[0].thumburl;
+        this._imageCache[fact.id] = thumbUrl;
+        return thumbUrl;
       }
-      // 如果没有筛选到，取第一张有 thumburl 的
-      for (const page of Object.values(pages)) {
-        const info = page.imageinfo?.[0];
-        if (info?.thumburl) {
-          this._imageCache[fact.id] = info.thumburl;
-          return info.thumburl;
-        }
+
+      // 降级：取第一张有缩略图的
+      const fallback = pageList.find(p => p.imageinfo?.[0]?.thumburl);
+      if (fallback) {
+        const thumbUrl = fallback.imageinfo[0].thumburl;
+        this._imageCache[fact.id] = thumbUrl;
+        return thumbUrl;
       }
-    } catch {
-      // 网络问题，静默失败
+    } catch (e) {
+      console.warn('Image fetch failed for:', fact.answer, e);
     }
     return null;
   },
