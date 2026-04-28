@@ -21,8 +21,9 @@
   --card-radius: 16px;
   --shadow-card: 0 4px 12px rgba(45, 80, 22, 0.12);
   --shadow-card-hover: 0 8px 24px rgba(45, 80, 22, 0.2);
-  --nav-height: 64px;
+  --nav-height: 56px;
   --max-width: 480px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* === Reset === */
@@ -37,36 +38,44 @@ body {
   background-color: var(--color-cream);
   color: var(--color-text);
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   -webkit-font-smoothing: antialiased;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  overflow-x: hidden;
 }
 
 /* === 应用容器 === */
 #app {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding-bottom: var(--nav-height);
   position: relative;
 }
 
-/* === 页面切换 === */
+/* === 页面容器 === */
+#page-container {
+  padding: 16px 16px calc(var(--nav-height) + var(--safe-bottom) + 16px) 16px;
+}
+
 .page {
   display: none;
-  padding: 20px 16px;
 }
 
 .page.active {
   display: block;
+  animation: fadeIn 0.3s ease;
 }
 
 /* === 页面头部 === */
 .page-header {
   text-align: center;
-  padding: 24px 0 16px;
+  padding: 20px 0 12px;
 }
 
 .page-header h1 {
   font-family: var(--font-serif);
-  font-size: 28px;
+  font-size: 24px;
   color: var(--color-green);
   letter-spacing: 2px;
 }
@@ -85,7 +94,8 @@ body {
   transform: translateX(-50%);
   width: 100%;
   max-width: var(--max-width);
-  height: var(--nav-height);
+  height: calc(var(--nav-height) + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
   background: var(--color-white);
   display: flex;
   align-items: center;
@@ -101,12 +111,14 @@ body {
   gap: 2px;
   text-decoration: none;
   color: var(--color-text-light);
-  font-size: 12px;
-  padding: 8px 16px;
+  font-size: 11px;
+  padding: 8px 12px;
+  min-height: 44px;
   border: none;
   background: none;
   cursor: pointer;
   transition: color 0.2s;
+  touch-action: manipulation;
 }
 
 .nav-item.active {
@@ -158,6 +170,9 @@ body {
   font-size: 24px;
   color: var(--color-text-light);
   cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
 .form-group {
@@ -174,21 +189,23 @@ body {
 .form-group select,
 .form-group input {
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px;
   border: 1px solid var(--color-cream-dark);
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 16px;
   background: var(--color-white);
   color: var(--color-text);
+  touch-action: manipulation;
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   border-radius: 8px;
   font-size: 14px;
   cursor: pointer;
   transition: background 0.2s;
+  touch-action: manipulation;
 }
 
 .btn-primary {
@@ -224,13 +241,14 @@ body {
 .flip-card {
   perspective: 1000px;
   cursor: pointer;
-  margin: 16px 0;
+  margin: 12px 0;
+  touch-action: manipulation;
 }
 
 .flip-card-inner {
   position: relative;
   width: 100%;
-  min-height: 280px;
+  min-height: 260px;
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
@@ -243,12 +261,13 @@ body {
 .flip-card-back {
   position: absolute;
   width: 100%;
-  min-height: 280px;
+  min-height: 260px;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   border-radius: var(--card-radius);
   background: var(--color-white);
   box-shadow: var(--shadow-card);
-  padding: 24px 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -257,10 +276,6 @@ body {
   background-image:
     radial-gradient(ellipse at 20% 50%, rgba(45, 80, 22, 0.03) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 50%, rgba(139, 105, 20, 0.03) 0%, transparent 50%);
-}
-
-.flip-card-front:hover {
-  box-shadow: var(--shadow-card-hover);
 }
 
 .flip-card-back {
@@ -273,55 +288,71 @@ body {
   border-radius: 12px;
   color: var(--color-white);
   font-size: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 /* === 卡片图片 === */
 .card-image-container {
   width: 100%;
-  max-height: 180px;
+  max-height: 160px;
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   background: var(--color-cream-dark);
 }
 
 .card-image {
   width: 100%;
-  height: 180px;
+  height: 160px;
   object-fit: cover;
   display: block;
   transition: opacity 0.3s;
 }
 
 .flip-card--compact .card-image-container {
-  max-height: 140px;
+  max-height: 120px;
 }
 
 .flip-card--compact .card-image {
-  height: 140px;
+  height: 120px;
 }
 
 .card-image-placeholder {
   width: 100%;
-  height: 180px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text-light);
   opacity: 0.3;
+  position: relative;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-image-placeholder svg {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.card-image-placeholder .placeholder-text {
+  font-size: 12px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
 }
 
 .flip-card--compact .card-image-placeholder {
-  height: 140px;
+  height: 120px;
 }
 
 .card-question {
   font-family: var(--font-serif);
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.5;
   color: var(--color-green);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .card-hint {
@@ -332,21 +363,21 @@ body {
 
 .card-answer {
   font-family: var(--font-serif);
-  font-size: 28px;
+  font-size: 24px;
   color: var(--color-green);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .card-explanation {
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.7;
   color: var(--color-text);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .card-actions {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   margin-top: auto;
 }
 
@@ -355,7 +386,8 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 8px 16px;
+  padding: 10px 16px;
+  min-height: 44px;
   border: 1px solid var(--color-cream-dark);
   border-radius: 20px;
   background: var(--color-cream);
@@ -363,6 +395,7 @@ body {
   font-size: 13px;
   cursor: pointer;
   transition: all 0.2s;
+  touch-action: manipulation;
 }
 
 .btn-fav:hover,
@@ -386,47 +419,53 @@ body {
   color: var(--color-white);
 }
 
+.btn-next:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* === 紧凑卡片（探索/收藏页） === */
 .flip-card--compact .flip-card-inner {
-  min-height: 200px;
+  min-height: 180px;
 }
 
 .flip-card--compact .flip-card-front,
 .flip-card--compact .flip-card-back {
-  min-height: 200px;
-  padding: 16px;
+  min-height: 180px;
+  padding: 12px;
 }
 
 .flip-card--compact .card-question {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .flip-card--compact .card-answer {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .flip-card--compact .card-explanation {
-  font-size: 14px;
+  font-size: 13px;
 }
 
 /* === 卡片网格 === */
 .cards-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* === 分类筛选 === */
 .category-filters {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .filter-btn {
-  padding: 6px 14px;
+  padding: 8px 14px;
+  min-height: 36px;
   border-radius: 16px;
   border: 1px solid var(--color-cream-dark);
   background: var(--color-white);
@@ -434,6 +473,7 @@ body {
   font-size: 13px;
   cursor: pointer;
   transition: all 0.2s;
+  touch-action: manipulation;
 }
 
 .filter-btn.active,
@@ -444,10 +484,6 @@ body {
 }
 
 /* === 页面切换动画 === */
-.page {
-  animation: fadeIn 0.3s ease;
-}
-
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
@@ -488,12 +524,40 @@ body {
 
   .flip-card-front,
   .flip-card-back {
-    min-height: 320px;
+    min-height: 300px;
   }
 
   .flip-card--compact .flip-card-front,
   .flip-card--compact .flip-card-back {
-    min-height: 220px;
+    min-height: 200px;
+  }
+
+  .card-image {
+    height: 180px;
+  }
+
+  .card-image-placeholder {
+    height: 180px;
+  }
+
+  .flip-card--compact .card-image {
+    height: 140px;
+  }
+
+  .flip-card--compact .card-image-placeholder {
+    height: 140px;
+  }
+
+  .card-question {
+    font-size: 22px;
+  }
+
+  .card-answer {
+    font-size: 28px;
+  }
+
+  .card-explanation {
+    font-size: 15px;
   }
 }
 
@@ -506,20 +570,16 @@ body {
 
 /* === 滚动条美化 === */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-cream);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-cream-dark);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-brown-light);
+  border-radius: 2px;
 }
 
 /* === 加载状态 === */

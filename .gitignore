@@ -2,3 +2,8 @@
 Thumbs.db
 *.log
 .env
+.image_cache/
+node_modules/
+.vercel/
+.claude/
+comparison_small.jpg

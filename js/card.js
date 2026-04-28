@@ -51,7 +51,6 @@ const Card = {
       </div>
     `;
 
-    // 异步加载图片
     this._loadImage(card, fact);
 
     card.addEventListener('click', (e) => {
@@ -79,7 +78,6 @@ const Card = {
   },
 
   createFavoriteCard(fact) {
-    const isFav = Storage.isFavorite(fact.id);
     const catColor = this.categoryColors[fact.category] || 'var(--color-brown)';
 
     const card = document.createElement('div');
@@ -117,7 +115,6 @@ const Card = {
       </div>
     `;
 
-    // 异步加载图片
     this._loadImage(card, fact);
 
     card.addEventListener('click', (e) => {
@@ -146,14 +143,31 @@ const Card = {
     return card;
   },
 
-  // 异步加载 Wikimedia 图片并插入卡片
   async _loadImage(card, fact) {
     const imageUrl = await AI.fetchImage(fact);
     if (!imageUrl) return;
 
     const containers = card.querySelectorAll('.card-image-container');
     containers.forEach(container => {
-      container.innerHTML = `<img class="card-image" src="${imageUrl}" alt="${fact.answer}" loading="lazy" onerror="this.parentElement.style.display='none'">`;
+      const placeholder = container.querySelector('.card-image-placeholder');
+      const img = document.createElement('img');
+      img.className = 'card-image';
+      img.src = imageUrl;
+      img.alt = fact.answer;
+      img.loading = 'lazy';
+      img.onload = () => {
+        if (placeholder) placeholder.remove();
+      };
+      img.onerror = () => {
+        img.remove();
+        if (placeholder) {
+          placeholder.innerHTML = `
+            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="currentColor" opacity="0.3"/></svg>
+            <span class="placeholder-text">图片加载失败</span>`;
+          placeholder.style.opacity = '0.5';
+        }
+      };
+      container.appendChild(img);
     });
   },
 };
