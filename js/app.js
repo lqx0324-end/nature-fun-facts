@@ -3,9 +3,6 @@ const App = {
   _exploreCategory: 'all',
   _exploreSearch: '',
   _exploreFacts: null,
-  _petX: 50,
-  _petDir: 1,
-  _petAnimId: null,
 
   async init() {
     await AI.loadFacts();
@@ -22,15 +19,6 @@ const App = {
   // === 页面渲染 ===
 
   renderHome() {
-    this._updatePetMood();
-
-    const mood = Storage.getPetMood();
-    const moodDots = 5;
-    const moodLevel = Math.min(mood, moodDots);
-    const moodHtml = Array.from({ length: moodDots }, (_, i) =>
-      `<span class="pet-mood-dot${i < moodLevel ? ' pet-mood-dot--active' : ''}"></span>`
-    ).join('');
-
     const container = document.getElementById('page-container');
     container.innerHTML = `
       <div class="page active" id="page-home">
@@ -38,86 +26,14 @@ const App = {
           <h1>🌿 自然冷知识</h1>
           <p class="subtitle">每天一个神奇的自然奥秘</p>
         </div>
-        <div class="pet-area" id="pet-area">
-          <div class="pet-mood">心情 <span class="pet-mood-bar">${moodHtml}</span></div>
-          <span class="pet-elephant" id="pet-elephant">🐘</span>
-          <div class="pet-ground"></div>
-        </div>
+        <div class="pet-area" id="pet-area"></div>
         <div id="daily-card-container">
           <div class="loading-spinner">加载中</div>
         </div>
       </div>
     `;
-    this._initPet();
+    Pet.init(document.getElementById('pet-area'));
     this._loadDailyCard();
-  },
-
-  _updatePetMood() {
-    const today = new Date().toDateString();
-    const lastVisit = Storage.getPetLastVisit();
-    if (lastVisit !== today) {
-      const mood = Storage.getPetMood();
-      Storage.savePetMood(Math.min(mood + 1, 5));
-      Storage.savePetLastVisit(today);
-    }
-  },
-
-  _initPet() {
-    const elephant = document.getElementById('pet-elephant');
-    const area = document.getElementById('pet-area');
-    if (!elephant || !area) return;
-
-    if (this._petAnimId) {
-      clearInterval(this._petAnimId);
-    }
-
-    this._petX = 10;
-    this._petDir = 1;
-    const mood = Storage.getPetMood();
-    const speed = 0.3 + mood * 0.15;
-
-    elephant.addEventListener('click', () => {
-      elephant.classList.remove('pet-elephant--dash', 'pet-elephant--happy');
-      void elephant.offsetWidth;
-      elephant.classList.add('pet-elephant--happy');
-
-      const heart = document.createElement('span');
-      heart.className = 'pet-heart';
-      heart.textContent = '💕';
-      heart.style.left = this._petX + 'px';
-      heart.style.bottom = '40px';
-      area.appendChild(heart);
-      setTimeout(() => heart.remove(), 800);
-
-      const currentMood = Storage.getPetMood();
-      if (currentMood < 5) {
-        Storage.savePetMood(currentMood + 1);
-        this._updateMoodDots();
-      }
-    });
-
-    this._petAnimId = setInterval(() => {
-      this._petX += speed * this._petDir;
-      const maxX = area.offsetWidth - 40;
-      if (this._petX >= maxX) {
-        this._petDir = -1;
-        elephant.classList.add('pet-elephant--right');
-      } else if (this._petX <= 0) {
-        this._petDir = 1;
-        elephant.classList.remove('pet-elephant--right');
-      }
-      elephant.style.left = this._petX + 'px';
-    }, 50);
-  },
-
-  _updateMoodDots() {
-    const moodBar = document.querySelector('.pet-mood-bar');
-    if (!moodBar) return;
-    const mood = Storage.getPetMood();
-    const moodDots = 5;
-    moodBar.innerHTML = Array.from({ length: moodDots }, (_, i) =>
-      `<span class="pet-mood-dot${i < mood ? ' pet-mood-dot--active' : ''}"></span>`
-    ).join('');
   },
 
   async _loadDailyCard() {

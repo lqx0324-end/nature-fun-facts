@@ -625,7 +625,7 @@ body {
 /* === 宠物大象 === */
 .pet-area {
   position: relative;
-  height: 60px;
+  height: 80px;
   margin: 8px 0 4px;
   overflow: hidden;
 }
@@ -636,36 +636,32 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--color-border);
-  border-radius: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
 }
 
-.pet-elephant {
+.pet-ground-decor {
   position: absolute;
-  bottom: 2px;
-  font-size: 36px;
-  cursor: pointer;
-  transition: transform 0.2s;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  pointer-events: none;
+}
+
+.pet-grass {
+  position: absolute;
+  bottom: 0;
+  font-size: 14px;
+  transition: opacity 0.5s, transform 0.5s;
   line-height: 1;
 }
 
-.pet-elephant:active {
-  transform: scale(1.2);
-}
-
-.pet-elephant--right {
-  transform: scaleX(-1);
-}
-
-.pet-elephant--dash {
-  animation: petDash 0.4s ease;
-}
-
-.pet-elephant--happy {
-  animation: petBounce 0.5s ease;
+.pet-svg {
+  position: absolute;
+  bottom: 2px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
 }
 
 .pet-mood {
@@ -696,30 +692,44 @@ body {
   background: var(--color-primary);
 }
 
-.pet-heart {
+.pet-effects {
   position: absolute;
-  font-size: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   pointer-events: none;
-  animation: heartFloat 0.8s ease forwards;
+  overflow: hidden;
 }
 
-@keyframes petDash {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(20px); }
-  100% { transform: translateX(0); }
+.pet-effect {
+  position: absolute;
+  font-size: 14px;
+  animation: petEffectFloat 1s ease forwards;
+  line-height: 1;
 }
 
-@keyframes petBounce {
-  0% { transform: scale(1); }
-  30% { transform: scale(1.3); }
-  50% { transform: scale(0.9); }
-  70% { transform: scale(1.15); }
-  100% { transform: scale(1); }
+.pet-footprint {
+  position: absolute;
+  bottom: 0;
+  width: 8px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-border);
+  opacity: 0.3;
+  animation: footprintFade 5s ease forwards;
 }
 
-@keyframes heartFloat {
-  0% { opacity: 1; transform: translateY(0) scale(0.5); }
-  100% { opacity: 0; transform: translateY(-40px) scale(1.2); }
+@keyframes petEffectFloat {
+  0% { opacity: 1; transform: translateY(0) scale(0.6); }
+  60% { opacity: 1; transform: translateY(-20px) scale(1); }
+  100% { opacity: 0; transform: translateY(-35px) scale(0.8); }
+}
+
+@keyframes footprintFade {
+  0% { opacity: 0.3; }
+  70% { opacity: 0.3; }
+  100% { opacity: 0; }
 }
 
 /* === 桌面端 === */
