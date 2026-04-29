@@ -625,7 +625,7 @@ body {
 /* === 宠物大象 === */
 .pet-area {
   position: relative;
-  height: 80px;
+  height: 90px;
   margin: 8px 0 4px;
   overflow: hidden;
 }
