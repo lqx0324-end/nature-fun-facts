@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#22883f" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0d1a12" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0a1628" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1628" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
@@ -20,6 +20,70 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- 自然梦境背景 -->
+  <div id="scene">
+    <div class="scene-stars"></div>
+    <div class="scene-moon"></div>
+    <svg class="scene-svg" viewBox="0 0 480 800" preserveAspectRatio="xMidYMid slice">
+      <!-- 远山 -->
+      <path class="mountain-far" d="M0,320 Q80,240 160,280 Q240,220 320,260 Q400,200 480,240 L480,800 L0,800 Z"/>
+      <!-- 中山 -->
+      <path class="mountain-mid" d="M0,380 Q60,320 120,360 Q200,300 280,340 Q360,280 440,320 Q470,310 480,330 L480,800 L0,800 Z"/>
+      <!-- 近山 -->
+      <path class="mountain-near" d="M0,420 Q40,380 80,400 Q160,360 240,380 Q320,350 400,370 Q460,360 480,380 L480,800 L0,800 Z"/>
+      <!-- 草地 -->
+      <path class="meadow" d="M0,460 Q60,440 120,450 Q200,430 280,445 Q360,435 440,440 Q470,438 480,442 L480,800 L0,800 Z"/>
+      <!-- 小溪 -->
+      <path class="stream-path" d="M60,470 Q120,465 180,472 Q240,468 300,475 Q360,470 420,474 Q460,472 480,476"/>
+      <path class="stream-path" d="M60,476 Q120,472 180,478 Q240,474 300,480 Q360,476 420,480 Q460,478 480,482"/>
+      <!-- 溪边花草 -->
+      <g class="flowers">
+        <!-- 左侧花丛 -->
+        <circle cx="50" cy="458" r="3" class="flower-pink"/>
+        <circle cx="58" cy="455" r="2.5" class="flower-yellow"/>
+        <circle cx="42" cy="460" r="2" class="flower-white"/>
+        <line x1="50" y2="458" y1="470" x2="50" class="stem"/>
+        <line x1="58" y2="455" y1="470" x2="58" class="stem"/>
+        <line x1="42" y2="460" y1="470" x2="42" class="stem"/>
+        <!-- 中间花丛 -->
+        <circle cx="180" cy="452" r="3" class="flower-purple"/>
+        <circle cx="188" cy="450" r="2.5" class="flower-pink"/>
+        <circle cx="172" cy="454" r="2" class="flower-yellow"/>
+        <line x1="180" y2="452" y1="468" x2="180" class="stem"/>
+        <line x1="188" y2="450" y1="468" x2="188" class="stem"/>
+        <line x1="172" y2="454" y1="468" x2="172" class="stem"/>
+        <!-- 右侧花丛 -->
+        <circle cx="380" cy="455" r="3" class="flower-white"/>
+        <circle cx="388" cy="453" r="2.5" class="flower-purple"/>
+        <circle cx="372" cy="457" r="2" class="flower-pink"/>
+        <line x1="380" y2="455" y1="470" x2="380" class="stem"/>
+        <line x1="388" y2="453" y1="470" x2="388" class="stem"/>
+        <line x1="372" y2="457" y1="470" x2="372" class="stem"/>
+        <!-- 小草 -->
+        <path d="M90,468 Q92,458 94,468" class="grass-blade"/>
+        <path d="M250,465 Q252,455 254,465" class="grass-blade"/>
+        <path d="M340,467 Q342,457 344,467" class="grass-blade"/>
+        <path d="M440,465 Q442,455 444,465" class="grass-blade"/>
+      </g>
+      <!-- 露珠 -->
+      <g class="dewdrops">
+        <circle cx="52" cy="456" r="1" class="dew"/>
+        <circle cx="182" cy="450" r="1" class="dew"/>
+        <circle cx="382" cy="453" r="1" class="dew"/>
+        <circle cx="252" cy="453" r="0.8" class="dew"/>
+      </g>
+    </svg>
+    <!-- 萤火虫 -->
+    <div class="firefly" style="left:15%;top:40%"></div>
+    <div class="firefly" style="left:30%;top:35%"></div>
+    <div class="firefly" style="left:55%;top:42%"></div>
+    <div class="firefly" style="left:70%;top:38%"></div>
+    <div class="firefly" style="left:85%;top:45%"></div>
+    <div class="firefly" style="left:45%;top:50%"></div>
+    <div class="firefly" style="left:20%;top:55%"></div>
+    <div class="firefly" style="left:65%;top:52%"></div>
+  </div>
+
   <div id="app">
     <nav class="bottom-nav">
       <a href="#/" class="nav-item active" data-page="home">
