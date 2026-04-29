@@ -3,6 +3,8 @@ const Storage = {
     FAVORITES: 'nature_facts_favorites',
     SETTINGS: 'nature_facts_settings',
     QUIZ_BEST: 'nature_facts_quiz_best',
+    PET_MOOD: 'nature_facts_pet_mood',
+    PET_LAST_VISIT: 'nature_facts_pet_last_visit',
   },
 
   // Fallback memory store when localStorage is unavailable (e.g. WeChat privacy mode)
@@ -95,5 +97,26 @@ const Storage = {
 
   saveBestQuizScore(score) {
     this._setItem(this.KEYS.QUIZ_BEST, String(score));
+  },
+
+  // === 宠物 ===
+  getPetMood() {
+    try {
+      return parseInt(this._getItem(this.KEYS.PET_MOOD)) || 0;
+    } catch {
+      return 0;
+    }
+  },
+
+  savePetMood(mood) {
+    this._setItem(this.KEYS.PET_MOOD, String(mood));
+  },
+
+  getPetLastVisit() {
+    return this._getItem(this.KEYS.PET_LAST_VISIT) || '';
+  },
+
+  savePetLastVisit(date) {
+    this._setItem(this.KEYS.PET_LAST_VISIT, date);
   },
 };
