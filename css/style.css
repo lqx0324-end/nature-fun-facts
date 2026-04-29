@@ -111,73 +111,8 @@ body {
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-}
-
-.scene-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* 云朵飘动 */
-.sc-cloud {
-  animation: cloudDrift 30s linear infinite;
-}
-
-@keyframes cloudDrift {
-  0% { transform: translateX(-60px); }
-  100% { transform: translateX(540px); }
-}
-
-/* 溪水波纹 */
-.sc-ripple {
-  animation: rippleFlow 4s ease-in-out infinite;
-}
-
-@keyframes rippleFlow {
-  0%, 100% { stroke-opacity: 0.15; }
-  50% { stroke-opacity: 0.35; }
-}
-
-/* 水面反光 */
-.sc-sparkle {
-  animation: sparkle 3s ease-in-out infinite;
-}
-
-@keyframes sparkle {
-  0%, 70%, 100% { opacity: 0.1; r: 0.5; }
-  35% { opacity: 0.8; r: 1.2; }
-}
-
-/* 月亮倒影 */
-.sc-moon-reflection {
-  animation: moonReflect 4s ease-in-out infinite;
-}
-
-@keyframes moonReflect {
-  0%, 100% { opacity: 0.06; }
-  50% { opacity: 0.12; }
-}
-
-.sc-moon-streak {
-  animation: moonStreak 3s ease-in-out infinite;
-}
-
-@keyframes moonStreak {
-  0%, 100% { rx: 20; opacity: 0.04; }
-  50% { rx: 25; opacity: 0.08; }
-}
-
-/* 露珠 */
-.sc-dew {
-  animation: dewGlint 4s ease-in-out infinite;
-}
-
-@keyframes dewGlint {
-  0%, 80%, 100% { opacity: 0.2; }
-  40% { opacity: 1; }
+  background-size: cover;
+  background-position: center;
 }
 
 /* 萤火虫 */
