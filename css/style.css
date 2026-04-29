@@ -21,14 +21,14 @@
   --color-primary: var(--green-600);
   --color-primary-light: var(--green-400);
   --color-primary-dark: var(--green-800);
-  --color-bg: rgba(15, 30, 20, 0.85);
-  --color-bg-card: rgba(22, 36, 25, 0.92);
-  --color-bg-nav: rgba(26, 46, 31, 0.95);
-  --color-text: #d4e8d9;
-  --color-text-secondary: #8aaa92;
-  --color-text-hint: #5a7a62;
-  --color-border: #2a4a32;
-  --color-border-light: #1e3a26;
+  --color-bg: rgba(240, 248, 240, 0.88);
+  --color-bg-card: rgba(255, 255, 255, 0.92);
+  --color-bg-nav: rgba(255, 255, 255, 0.95);
+  --color-text: #1a2e1f;
+  --color-text-secondary: #4a6b52;
+  --color-text-hint: #7a9a82;
+  --color-border: #c4d8c9;
+  --color-border-light: #d8e8dc;
 
   /* 分类色 */
   --category-animal: var(--green-700);
@@ -58,8 +58,8 @@
     --color-primary: var(--green-400);
     --color-primary-light: var(--green-300);
     --color-primary-dark: var(--green-600);
-    --color-bg: rgba(10, 20, 14, 0.9);
-    --color-bg-card: rgba(16, 28, 19, 0.94);
+    --color-bg: rgba(15, 30, 20, 0.9);
+    --color-bg-card: rgba(22, 36, 25, 0.94);
     --color-bg-nav: rgba(18, 32, 22, 0.96);
     --color-text: #d4e8d9;
     --color-text-secondary: #8aaa92;
@@ -89,7 +89,7 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: linear-gradient(180deg, #0a1628 0%, #1a2744 30%, #1e3a5f 60%, #2a4a6b 100%);
+  background: linear-gradient(180deg, #4a90d9 0%, #7ab8e8 30%, #a8d8f0 60%, #c8e8c0 85%, #90c870 100%);
   color: var(--color-text);
   min-height: 100vh;
   min-height: -webkit-fill-available;
@@ -115,23 +115,51 @@ body {
   background-position: center;
 }
 
-/* 萤火虫 */
-.sc-firefly {
+/* 蝴蝶 */
+.sc-butterfly {
   position: absolute;
-  border-radius: 50%;
-  background: #e8f060;
-  box-shadow: 0 0 8px 3px rgba(232,240,96,0.5), 0 0 16px 6px rgba(232,240,96,0.2);
-  animation: fireflyFloat 7s ease-in-out infinite;
+  width: 12px;
+  height: 12px;
+  animation: butterflyFloat 8s ease-in-out infinite;
 }
 
-@keyframes fireflyFloat {
-  0%   { transform: translate(0, 0); opacity: 0; }
-  8%   { opacity: 1; }
-  25%  { transform: translate(20px, -30px); opacity: 0.9; }
-  50%  { transform: translate(-15px, -50px); opacity: 1; }
-  75%  { transform: translate(25px, -20px); opacity: 0.7; }
+.sc-butterfly::before,
+.sc-butterfly::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 8px;
+  border-radius: 50% 50% 20% 50%;
+  top: 0;
+  animation: wingFlap 0.3s ease-in-out infinite alternate;
+}
+
+.sc-butterfly::before {
+  left: 0;
+  background: rgba(240,180,100,0.7);
+  transform-origin: right center;
+}
+
+.sc-butterfly::after {
+  right: 0;
+  background: rgba(240,160,120,0.7);
+  transform-origin: left center;
+  animation-delay: 0.05s;
+}
+
+@keyframes wingFlap {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(60deg); }
+}
+
+@keyframes butterflyFloat {
+  0%   { transform: translate(0, 0) rotate(5deg); opacity: 0; }
+  8%   { opacity: 0.9; }
+  25%  { transform: translate(30px, -25px) rotate(-5deg); opacity: 0.8; }
+  50%  { transform: translate(-20px, -40px) rotate(8deg); opacity: 0.9; }
+  75%  { transform: translate(35px, -15px) rotate(-3deg); opacity: 0.7; }
   92%  { opacity: 0.1; }
-  100% { transform: translate(0, 0); opacity: 0; }
+  100% { transform: translate(0, 0) rotate(5deg); opacity: 0; }
 }
 
 /* === 应用容器 === */

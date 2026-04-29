@@ -3,30 +3,27 @@ const Scene = {
     const el = document.getElementById('scene');
     if (!el) return;
 
-    // 渐变天空占位
-    el.style.background = 'linear-gradient(180deg, #070d1f 0%, #0f1d3a 25%, #1a2f55 50%, #1e3a5f 75%, #2a4a6b 100%)';
+    // 蓝天占位
+    el.style.background = 'linear-gradient(180deg, #4a90d9 0%, #7ab8e8 30%, #a8d8f0 60%, #c8e8c0 85%, #90c870 100%)';
 
-    // 萤火虫（先添加，图片加载后也在）
-    el.innerHTML = this._fireflies();
+    el.innerHTML = this._butterflies();
 
-    // 加载 AI 生成的写实背景
     this._loadBackground(el);
   },
 
   _loadBackground(el) {
     const prompt = encodeURIComponent(
-      'A breathtaking dreamy nighttime landscape, a winding S-shaped stream flowing through the entire scene from top to bottom, ' +
-      'moonlight reflecting on the water surface with shimmering ripples, ' +
-      'wildflowers and lush grass along both banks of the stream, ' +
-      'distant misty mountains silhouetted against a starry sky, ' +
-      'a large luminous moon casting soft silver light, ' +
-      'fireflies glowing softly among the flowers, ' +
-      'dewdrops on petals catching moonlight, ' +
-      'peaceful serene atmosphere, all creatures living happily, ' +
-      'photorealistic, highly detailed, 4k, cinematic lighting, magical realism'
+      'A breathtaking dreamy daytime landscape under clear blue sky, ' +
+      'a narrow winding S-shaped stream flowing through the entire scene from top to bottom, ' +
+      'sunlight reflecting on the water surface with gentle sparkles, ' +
+      'colorful wildflowers and lush green grass along both banks of the stream, ' +
+      'distant green mountains under a bright sky with soft white clouds, ' +
+      'butterflies fluttering among the flowers, ' +
+      'peaceful serene happy atmosphere, all creatures living joyfully, ' +
+      'photorealistic, highly detailed, 4k, golden hour soft lighting, magical realism'
     );
 
-    const imageUrl = `/api/image?prompt=${prompt}&width=1080&height=1920&seed=42`;
+    const imageUrl = `/api/image?prompt=${prompt}&width=1080&height=1920&seed=88`;
 
     const img = new Image();
     img.onload = () => {
@@ -34,24 +31,20 @@ const Scene = {
       el.style.backgroundSize = 'cover';
       el.style.backgroundPosition = 'center';
       el.style.transition = 'background-image 1.5s ease';
-      // 强制重绘触发 transition
       void el.offsetWidth;
     };
-    img.onerror = () => {
-      // 加载失败保持渐变天空
-    };
+    img.onerror = () => {};
     img.src = imageUrl;
   },
 
-  _fireflies() {
+  _butterflies() {
     let s = '';
-    for (let i = 0; i < 10; i++) {
-      const left = 5 + Math.random() * 90;
-      const top = 25 + Math.random() * 55;
-      const dur = 5 + Math.random() * 5;
+    for (let i = 0; i < 6; i++) {
+      const left = 10 + Math.random() * 80;
+      const top = 20 + Math.random() * 60;
+      const dur = 6 + Math.random() * 6;
       const delay = Math.random() * 8;
-      const size = 3 + Math.random() * 2;
-      s += `<div class="sc-firefly" style="left:${left}%;top:${top}%;width:${size}px;height:${size}px;animation-duration:${dur}s;animation-delay:${delay}s"></div>`;
+      s += `<div class="sc-butterfly" style="left:${left}%;top:${top}%;animation-duration:${dur}s;animation-delay:${delay}s"></div>`;
     }
     return s;
   },
