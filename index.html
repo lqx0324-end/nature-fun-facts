@@ -2,23 +2,21 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#2d1b0e">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#22883f" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0d1a12" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="探索动植物的惊人秘密：会走路的树、会放火的鸟、能冻成冰棍又复活的青蛙…">
 
-  <!-- 微信/社交分享 -->
   <meta property="og:title" content="自然冷知识 — 每天一个神奇的自然奥秘">
   <meta property="og:description" content="探索动植物的惊人秘密：会走路的树、会放火的鸟、能冻成冰棍又复活的青蛙…">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect fill='%232d1b0e' width='200' height='200' rx='20'/><text x='100' y='120' font-size='80' text-anchor='middle'>🌿</text></svg>">
 
   <title>自然冷知识</title>
 
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
-
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -42,9 +40,8 @@
       </a>
     </nav>
 
-    <main id="page-container">
-      <!-- Pages rendered here by router -->
-    </main>
+    <main id="page-container"></main>
+    <div id="toast" class="toast"></div>
   </div>
 
   <script src="js/storage.js"></script>

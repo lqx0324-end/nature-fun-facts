@@ -6,6 +6,13 @@ const App = {
     Router.init();
   },
 
+  toast(message, duration = 2000) {
+    const el = document.getElementById('toast');
+    el.textContent = message;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), duration);
+  },
+
   // === 页面渲染 ===
 
   renderHome() {
@@ -16,7 +23,9 @@ const App = {
           <h1>🌿 自然冷知识</h1>
           <p class="subtitle">每天一个神奇的自然奥秘</p>
         </div>
-        <div id="daily-card-container"></div>
+        <div id="daily-card-container">
+          <div class="loading-spinner">加载中</div>
+        </div>
       </div>
     `;
     this._loadDailyCard();
@@ -32,7 +41,8 @@ const App = {
       return;
     }
 
-    const card = Card.createCard(fact);
+    container.innerHTML = '';
+    const card = Card.createCard(fact, { onShare: () => this._shareFact(fact) });
     const nextBtn = card.querySelector('[data-action="next"]');
     if (nextBtn) {
       nextBtn.addEventListener('click', async function handler() {
@@ -43,7 +53,7 @@ const App = {
           const newFact = await AI.getNewFact();
           if (newFact) {
             container.innerHTML = '';
-            const newCard = Card.createCard(newFact);
+            const newCard = Card.createCard(newFact, { onShare: () => App._shareFact(newFact) });
             const newNextBtn = newCard.querySelector('[data-action="next"]');
             if (newNextBtn) {
               newNextBtn.addEventListener('click', handler);
@@ -51,7 +61,6 @@ const App = {
             container.appendChild(newCard);
           }
         } finally {
-          // Button may have been removed from DOM, check first
           if (btn.isConnected) {
             btn.disabled = false;
             btn.querySelector('span').textContent = '换一个';
@@ -77,7 +86,9 @@ const App = {
           <button class="filter-btn" data-category="共生关系">共生关系</button>
           <button class="filter-btn" data-category="极端生存">极端生存</button>
         </div>
-        <div class="cards-grid" id="explore-cards-container"></div>
+        <div class="cards-grid" id="explore-cards-container">
+          <div class="loading-spinner">加载中</div>
+        </div>
       </div>
     `;
     this._loadExploreCards('all');
@@ -93,7 +104,7 @@ const App = {
 
     container.innerHTML = '';
     filtered.forEach(fact => {
-      const card = Card.createCard(fact, { compact: true });
+      const card = Card.createCard(fact, { compact: true, onShare: () => this._shareFact(fact) });
       container.appendChild(card);
     });
   },
@@ -125,7 +136,9 @@ const App = {
           <p>还没有收藏</p>
           <p class="hint">点击卡片上的收藏按钮来添加</p>
         </div>
-        <div class="cards-grid" id="favorites-cards-container"></div>
+        <div class="cards-grid" id="favorites-cards-container">
+          <div class="loading-spinner">加载中</div>
+        </div>
       </div>
     `;
     await this._loadFavoriteCards();
@@ -138,15 +151,15 @@ const App = {
 
     const favoriteIds = Storage.getFavorites();
     const facts = await AI.loadFacts();
-
     const favoriteFacts = facts.filter(f => favoriteIds.includes(f.id));
+
+    container.innerHTML = '';
 
     if (favoriteFacts.length === 0) {
       emptyState.style.display = 'block';
       return;
     }
 
-    container.innerHTML = '';
     favoriteFacts.forEach(fact => {
       const card = Card.createFavoriteCard(fact);
       container.appendChild(card);
@@ -185,7 +198,20 @@ const App = {
       const provider = document.getElementById('api-provider').value;
       const apiKey = document.getElementById('api-key').value.trim();
       Storage.saveSettings({ apiProvider: provider, apiKey });
-      alert('设置已保存！');
+      this.toast('设置已保存');
     });
+  },
+
+  _shareFact(fact) {
+    const text = `🌿 自然冷知识\n\n❓ ${fact.question}\n💡 ${fact.answer}\n📖 ${fact.explanation}`;
+    if (navigator.share) {
+      navigator.share({ title: '自然冷知识', text }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(text).then(() => {
+        this.toast('已复制到剪贴板');
+      }).catch(() => {
+        this.toast('分享失败');
+      });
+    }
   },
 };
