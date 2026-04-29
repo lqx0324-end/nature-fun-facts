@@ -3,6 +3,7 @@ const Router = {
     '/': () => App.renderHome(),
     '/explore': () => App.renderExplore(),
     '/favorites': () => App.renderFavorites(),
+    '/quiz': () => App.renderQuiz(),
     '/settings': () => App.renderSettings(),
   },
 

@@ -1,5 +1,8 @@
 const App = {
   _currentPage: null,
+  _exploreCategory: 'all',
+  _exploreSearch: '',
+  _exploreFacts: null,
 
   async init() {
     await AI.loadFacts();
@@ -72,12 +75,21 @@ const App = {
   },
 
   renderExplore() {
+    this._exploreCategory = 'all';
+    this._exploreSearch = '';
+    this._exploreFacts = null;
+
     const container = document.getElementById('page-container');
     container.innerHTML = `
       <div class="page active" id="page-explore">
         <div class="page-header">
           <h1>🔍 探索自然</h1>
           <p class="subtitle">发现更多令人惊叹的冷知识</p>
+        </div>
+        <div class="search-bar" id="search-bar">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="currentColor"/></svg>
+          <input type="text" id="search-input" placeholder="搜索问题、答案..." autocomplete="off">
+          <button class="search-clear" id="search-clear" style="display:none">&times;</button>
         </div>
         <div class="category-filters" id="category-filters">
           <button class="filter-btn active" data-category="all">全部</button>
@@ -86,26 +98,77 @@ const App = {
           <button class="filter-btn" data-category="共生关系">共生关系</button>
           <button class="filter-btn" data-category="极端生存">极端生存</button>
         </div>
+        <div id="explore-empty" class="empty-state" style="display:none">
+          <p>没有找到匹配的冷知识</p>
+          <p class="hint">换个关键词试试</p>
+        </div>
         <div class="cards-grid" id="explore-cards-container">
           <div class="loading-spinner">加载中</div>
         </div>
       </div>
     `;
-    this._loadExploreCards('all');
+    this._loadExploreCards();
+    this._bindSearch();
     this._bindFilters();
   },
 
-  async _loadExploreCards(category) {
+  async _loadExploreCards() {
     const container = document.getElementById('explore-cards-container');
     if (!container) return;
 
-    const facts = await AI.loadFacts();
-    const filtered = category === 'all' ? facts : facts.filter(f => f.category === category);
+    this._exploreFacts = await AI.loadFacts();
+    this._filterAndRenderExplore();
+  },
+
+  _filterAndRenderExplore() {
+    const container = document.getElementById('explore-cards-container');
+    const emptyState = document.getElementById('explore-empty');
+    if (!container) return;
+
+    let filtered = this._exploreFacts;
+
+    if (this._exploreCategory !== 'all') {
+      filtered = filtered.filter(f => f.category === this._exploreCategory);
+    }
+
+    if (this._exploreSearch) {
+      const term = this._exploreSearch.toLowerCase();
+      filtered = filtered.filter(f =>
+        f.question.toLowerCase().includes(term) ||
+        f.answer.toLowerCase().includes(term) ||
+        f.explanation.toLowerCase().includes(term)
+      );
+    }
 
     container.innerHTML = '';
-    filtered.forEach(fact => {
-      const card = Card.createCard(fact, { compact: true, onShare: () => this._shareFact(fact) });
-      container.appendChild(card);
+    if (filtered.length === 0) {
+      emptyState.style.display = 'block';
+    } else {
+      emptyState.style.display = 'none';
+      filtered.forEach(fact => {
+        const card = Card.createCard(fact, { compact: true, onShare: () => this._shareFact(fact) });
+        container.appendChild(card);
+      });
+    }
+  },
+
+  _bindSearch() {
+    const input = document.getElementById('search-input');
+    const clearBtn = document.getElementById('search-clear');
+    if (!input) return;
+
+    input.addEventListener('input', () => {
+      this._exploreSearch = input.value.trim();
+      clearBtn.style.display = this._exploreSearch ? 'flex' : 'none';
+      this._filterAndRenderExplore();
+    });
+
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      this._exploreSearch = '';
+      clearBtn.style.display = 'none';
+      this._filterAndRenderExplore();
+      input.focus();
     });
   },
 
@@ -120,7 +183,8 @@ const App = {
       filters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      this._loadExploreCards(btn.dataset.category);
+      this._exploreCategory = btn.dataset.category;
+      this._filterAndRenderExplore();
     });
   },
 
@@ -199,6 +263,35 @@ const App = {
       const apiKey = document.getElementById('api-key').value.trim();
       Storage.saveSettings({ apiProvider: provider, apiKey });
       this.toast('设置已保存');
+    });
+  },
+
+  async renderQuiz() {
+    const container = document.getElementById('page-container');
+    const bestScore = Storage.getBestQuizScore();
+
+    container.innerHTML = `
+      <div class="page active" id="page-quiz">
+        <div class="page-header">
+          <h1>⚡ 知识挑战</h1>
+          <p class="subtitle">测试你的自然冷知识储备！</p>
+        </div>
+        <div class="quiz-start-card">
+          <div class="quiz-start-icon">⚡</div>
+          <p class="quiz-start-desc">每轮 ${Quiz.QUESTIONS_PER_ROUND} 道题，看看你能答对几个？</p>
+          ${bestScore > 0 ? `<p class="quiz-best-score">最佳成绩：${bestScore}/${Quiz.QUESTIONS_PER_ROUND}</p>` : ''}
+          <button class="btn btn-primary" id="quiz-start-btn">开始挑战</button>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('quiz-start-btn').addEventListener('click', async () => {
+      const facts = await AI.loadFacts();
+      if (facts.length < 4) {
+        this.toast('题目数量不足，暂时无法挑战');
+        return;
+      }
+      Quiz.start(facts);
     });
   },
 

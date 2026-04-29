@@ -2,6 +2,7 @@ const Storage = {
   KEYS: {
     FAVORITES: 'nature_facts_favorites',
     SETTINGS: 'nature_facts_settings',
+    QUIZ_BEST: 'nature_facts_quiz_best',
   },
 
   // Fallback memory store when localStorage is unavailable (e.g. WeChat privacy mode)
@@ -81,5 +82,18 @@ const Storage = {
 
   getApiProvider() {
     return this.getSettings().apiProvider || 'openai';
+  },
+
+  // === 测验 ===
+  getBestQuizScore() {
+    try {
+      return parseInt(this._getItem(this.KEYS.QUIZ_BEST)) || 0;
+    } catch {
+      return 0;
+    }
+  },
+
+  saveBestQuizScore(score) {
+    this._setItem(this.KEYS.QUIZ_BEST, String(score));
   },
 };
